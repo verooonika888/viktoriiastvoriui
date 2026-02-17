@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <!-- Intl-Tel-Input CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
@@ -178,14 +178,16 @@
                 <!-- Другий рядок (італік, тонший) -->
                 <span class="italic font-normal text-white/90">контенту та візуалу,</span>
                 <br>
-                <!-- Третій рядок (великими літерами, жирний, як перша) -->
-                <span class="uppercase mt-2 block text-[26px] md:text-[40px] leading-tight">
+                <!-- Третій рядок (ВЕЛИКИМИ, ЖИРНИМ, Шрифт Manrope (font-sans)) -->
+                <!-- text-[12px] щоб влізло в 2 рядки на мобільному -->
+                <span class="font-sans font-extrabold uppercase mt-2 block text-[12px] md:text-3xl leading-snug md:leading-tight tracking-wide text-white">
                     після якого твій профіль нарешті говорить про тебе, виглядає професійно і продає
                 </span>
             </h1>
 
             <!-- Описание (Белое, с тенью) -->
-            <p class="text-white/90 mb-8 font-light text-base leading-relaxed text-overlay-shadow max-w-xs mx-auto">
+            <!-- mb-3 (було mb-8) - зменшений відступ до кнопки -->
+            <p class="text-white/90 mb-3 font-light text-base leading-relaxed text-overlay-shadow max-w-xs mx-auto">
                 Щоб прийняти участь, зареєструйся.
             </p>
 
@@ -353,7 +355,7 @@
             const data = {
                 niche: formData.get('niche'),
                 difficulties: formData.get('difficulties'),
-                readiness: formData.get('readiness'), // Додано нове поле
+                readiness: formData.get('readiness'), 
                 instagram: formData.get('instagram'),
                 phone: iti.getNumber(),
                 tg_nick: formData.get('tg_nick'),
