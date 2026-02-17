@@ -107,6 +107,36 @@
             display: block;
         }
 
+        /* Radio Button Custom Style */
+        input[type="radio"] {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            color: #1C1917;
+            width: 1.25em;
+            height: 1.25em;
+            border: 1px solid #D6D3D1;
+            border-radius: 50%;
+            display: grid;
+            place-content: center;
+            transition: 0.2s all;
+        }
+        input[type="radio"]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em #1C1917;
+        }
+        input[type="radio"]:checked::before {
+            transform: scale(1);
+        }
+        input[type="radio"]:checked {
+            border-color: #1C1917;
+        }
+
         .iti { width: 100%; }
         .iti__country-list { z-index: 50; border-radius: 12px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         
@@ -130,30 +160,38 @@
     <section class="relative h-[100dvh] w-full overflow-hidden">
         
         <!-- ФОТО ЭКСПЕРТА -->
+        <!-- object-cover center = фото по центру, на весь экран -->
         <img src="neew2.jpg" 
              alt="Expert" 
              class="absolute inset-0 w-full h-full object-cover object-center">
         
-        <!-- ГРАДИЕНТ СНИЗУ -->
+        <!-- ГРАДИЕНТ СНИЗУ (Чтобы белый текст читался на любом фото) -->
+        <!-- Идет от черного (0.7) снизу к прозрачному вверх -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
 
         <!-- ТЕКСТ ПОВЕРХ ФОТО (Внизу) -->
-        <div class="absolute bottom-10 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:max-w-xl z-10 text-center">
+        <div class="absolute bottom-10 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:max-w-3xl z-10 text-center">
             
-            <!-- Заголовок -->
-            <h1 class="text-[32px] md:text-5xl serif font-bold mb-5 leading-[1.1] text-white text-overlay-shadow tracking-tight">
+            <!-- Заголовок (Жирный, белый, с тенью) -->
+            <h1 class="text-[32px] md:text-5xl serif font-bold mb-6 leading-[1.1] text-white text-overlay-shadow tracking-tight">
                 Груповий розбір <br> 
-                <span class="italic font-normal text-white/90">системи контенту та візуалу</span>
+                <!-- Другий рядок (італік, тонший) -->
+                <span class="italic font-normal text-white/90">контенту та візуалу,</span>
+                <br>
+                <!-- Третій рядок (великими літерами, жирний, як перша) -->
+                <span class="uppercase mt-2 block text-[26px] md:text-[40px] leading-tight">
+                    після якого твій профіль нарешті говорить про тебе, виглядає професійно і продає
+                </span>
             </h1>
 
-            <!-- Описание (ОФЕР) -->
-            <p class="text-white/95 mb-8 font-light text-[15px] md:text-lg leading-relaxed text-overlay-shadow max-w-md mx-auto">
-                КОНТЕНТУ ТА ВІЗУАЛУ, ДЕ ТИ ЗБЕРЕШ ПРОФІЛЬ У ЦІЛІСНУ СИСТЕМУ, ЯКА ТРАНСЛЮЄ ТЕБЕ, ВИГЛЯДАЄ ПРОФЕСІЙНО І ПРИВОДИТЬ КЛІЄНТІВ.
+            <!-- Описание (Белое, с тенью) -->
+            <p class="text-white/90 mb-8 font-light text-base leading-relaxed text-overlay-shadow max-w-xs mx-auto">
+                Щоб прийняти участь, зареєструйся.
             </p>
 
-            <!-- Кнопка -->
-            <button onclick="scrollToForm()" class="btn-white w-full px-8 py-4 rounded-2xl text-lg font-semibold tracking-wide shadow-2xl uppercase">
-                Зареєструватися
+            <!-- Кнопка (Белая с черным текстом для контраста) -->
+            <button onclick="scrollToForm()" class="btn-white w-full max-w-md px-8 py-4 rounded-2xl text-lg font-semibold tracking-wide shadow-2xl">
+                ЗАРЕЄСТРУЙСЯ
             </button>
         </div>
     </section>
@@ -175,32 +213,53 @@
                     <input type="text" name="niche" required class="input-field" placeholder="Наприклад: Таргет, Психологія...">
                 </div>
 
-                <!-- 2. Труднощі -->
+                <!-- 2. Труднощі (Змінено текст) -->
                 <div class="space-y-2">
-                    <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1">Які труднощі ти відчуваєш з блогом?</label>
+                    <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1">Які труднощі ти відчуваєш з контентом та візуалом?</label>
                     <textarea name="difficulties" required rows="3" class="input-field" placeholder="Опишіть вашу ситуацію..."></textarea>
                 </div>
 
-                <!-- 3. Соцмережі -->
+                <!-- 3. НОВЕ ПИТАННЯ: Готовність (Радіо кнопки) -->
+                <div class="space-y-3">
+                    <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1 leading-relaxed">
+                        Наскільки ти готова працювати над покращенням свого візуалу та контенту, щоб отримувати нових підписників, класні охоплення та збільшувати свої продажі?
+                    </label>
+                    
+                    <div class="space-y-3 mt-2">
+                        <!-- Варіант 1 -->
+                        <label class="flex items-center gap-3 p-4 border border-[#E5E5E5] rounded-xl bg-white cursor-pointer hover:border-[#1C1917] transition-colors">
+                            <input type="radio" name="readiness" value="go_but_no_time" required>
+                            <span class="text-[#1C1917] text-sm md:text-base">Готова, але все ніяк не можу виділити на це час</span>
+                        </label>
+
+                        <!-- Варіант 2 -->
+                        <label class="flex items-center gap-3 p-4 border border-[#E5E5E5] rounded-xl bg-white cursor-pointer hover:border-[#1C1917] transition-colors">
+                            <input type="radio" name="readiness" value="ready_100" required>
+                            <span class="text-[#1C1917] text-sm md:text-base">Готова на всі сто</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 4. Соцмережі -->
                 <div class="space-y-2">
                     <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1">Посилання на соцмережі (Instagram)</label>
                     <input type="text" name="instagram" required class="input-field" placeholder="@username">
                 </div>
 
-                <!-- 4. Телефон -->
+                <!-- 5. Телефон -->
                 <div class="space-y-2">
                     <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1">Номер телефону для зв'язку</label>
                     <input type="tel" id="phone" name="phone" required class="input-field">
                     <p class="text-red-500 text-xs mt-2 hidden" id="error-msg">Некоректний номер</p>
                 </div>
 
-                <!-- 5. ТГ Нік -->
+                <!-- 6. ТГ Нік -->
                 <div class="space-y-2">
                     <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1">Нік у Telegram</label>
                     <input type="text" name="tg_nick" required class="input-field" placeholder="@username">
                 </div>
 
-                <!-- 6. Checkbox Case Review -->
+                <!-- 7. Checkbox Case Review -->
                 <label class="flex items-center gap-4 cursor-pointer checkbox-wrapper group py-2">
                     <div class="relative">
                         <input type="checkbox" name="want_review" class="peer sr-only">
@@ -294,6 +353,7 @@
             const data = {
                 niche: formData.get('niche'),
                 difficulties: formData.get('difficulties'),
+                readiness: formData.get('readiness'), // Додано нове поле
                 instagram: formData.get('instagram'),
                 phone: iti.getNumber(),
                 tg_nick: formData.get('tg_nick'),
