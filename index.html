@@ -34,14 +34,10 @@
     </script>
 
     <style>
-        /* --- VISUAL STYLE SYSTEM (Corrected from Reference) --- */
+        /* --- VISUAL STYLE SYSTEM (Victoria Visual Content) --- */
         :root {
-            /* Холодный светло-серый фон (Stone-100) */
-            --bg-color: #F5F5F4; 
-            /* Темно-серый/Черный для текста и кнопок */
-            --text-main: #1C1917; 
-            /* Вторичный серый текст */
-            --text-secondary: #57534E;
+            --bg-color: #F5F5F4; /* Stone-100 */
+            --text-main: #1C1917; /* Stone-900 */
         }
 
         body {
@@ -53,7 +49,7 @@
 
         .serif { font-family: 'Playfair Display', serif; }
 
-        /* Кнопка: ТЕМНАЯ (Черная/Графитовая) как на референсе */
+        /* Кнопка: ТЕМНАЯ (Черная/Графитовая) */
         .btn-dark {
             background-color: #1C1917;
             color: white;
@@ -72,7 +68,7 @@
         .input-field {
             width: 100%;
             background-color: white; 
-            border: 1px solid #E5E5E5; /* Светлая рамка */
+            border: 1px solid #E5E5E5; 
             border-radius: 12px;
             padding: 18px 20px; 
             font-size: 16px; 
@@ -86,7 +82,7 @@
         }
         .input-field:focus {
             outline: none;
-            border-color: #1C1917; /* Фокус - черный */
+            border-color: #1C1917;
             box-shadow: 0 0 0 1px rgba(28, 25, 23, 0.1);
         }
         textarea.input-field {
@@ -95,7 +91,7 @@
 
         /* Checkbox Custom Style */
         .checkbox-wrapper input:checked + div {
-            background-color: #1C1917; /* Чекбокс черный */
+            background-color: #1C1917;
             border-color: #1C1917;
         }
         .checkbox-wrapper input:checked + div svg {
@@ -108,7 +104,6 @@
         
         html { scroll-behavior: smooth; }
 
-        /* Loader */
         .loader {
             border: 2px solid #333;
             border-top: 2px solid #fff;
@@ -123,39 +118,41 @@
 </head>
 <body class="overflow-x-hidden bg-[#F5F5F4]">
 
-    <!-- SCREEN 1: HERO (100% Height for iPhone) -->
-    <section class="flex flex-col md:flex-row h-[100dvh] w-full relative">
+    <!-- SCREEN 1: HERO (100% Height, Floating Card) -->
+    <section class="relative h-[100dvh] w-full overflow-hidden">
         
-        <!-- Верхняя половина (Фото) -->
-        <div class="h-[45%] md:h-full w-full md:w-1/2 relative bg-[#E7E5E4] overflow-hidden order-1">
-             <!-- ФОТО ЭКСПЕРТА -->
-            <img src="IMG_2259.JPG" 
-                 alt="Expert" 
-                 class="w-full h-full object-cover object-top grayscale-[20%]"> <!-- Чуть приглушил цвета фото под стиль -->
-        </div>
+        <!-- ФОТО ЭКСПЕРТА (На весь экран) -->
+        <!-- object-cover гарантирует, что фото заполнит весь экран без искажений -->
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" 
+             alt="Expert" 
+             class="absolute inset-0 w-full h-full object-cover object-center grayscale-[10%]">
+        
+        <!-- Затемнение снизу (чтобы карточка лучше читалась, если фото светлое) -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
 
-        <!-- Нижняя половина (Текст) -->
-        <div class="h-[55%] md:h-full w-full md:w-1/2 flex flex-col justify-center items-center px-6 pb-6 bg-[#F5F5F4] order-2 text-center relative z-10">
-            
-            <div class="w-full max-w-md flex flex-col items-center justify-center h-full">
-                <!-- Надзаголовок -->
-                <p class="text-[#57534E] uppercase tracking-[0.2em] text-[10px] md:text-xs font-bold mb-4 md:mb-6">
+        <!-- ПЛАВАЮЩАЯ КАРТОЧКА С ТЕКСТОМ -->
+        <div class="absolute bottom-6 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:max-w-md z-10">
+            <!-- 
+                bg-white/85 = Белый фон 85% непрозрачности
+                backdrop-blur-md = Размытие фона под карточкой (матовое стекло)
+                border border-white/50 = Тонкая обводка
+            -->
+            <div class="bg-white/85 backdrop-blur-md border border-white/60 rounded-[32px] p-8 text-center shadow-2xl">
+                
+                <p class="text-[#57534E] uppercase tracking-[0.2em] text-[10px] font-bold mb-4">
                     Експертна сесія
                 </p>
 
-                <!-- Заголовок -->
-                <h1 class="text-[32px] md:text-6xl serif mb-4 md:mb-8 leading-[1.15] text-[#1C1917]">
+                <h1 class="text-3xl serif mb-4 leading-[1.1] text-[#1C1917]">
                     Груповий розбір <br> 
                     <span class="italic font-light">твого запуску</span>
                 </h1>
 
-                <!-- Описание -->
-                <p class="text-[#78716C] mb-8 md:mb-10 font-light leading-relaxed text-sm md:text-lg max-w-xs md:max-w-md mx-auto">
+                <p class="text-[#44403C] mb-6 font-light text-sm leading-relaxed">
                     Отримай чітку стратегію, знайди свої точки росту та масштабуй дохід.
                 </p>
 
-                <!-- Кнопка (Черная) -->
-                <button onclick="scrollToForm()" class="btn-dark w-full md:w-auto px-12 py-5 rounded-2xl md:rounded-full text-base md:text-lg font-medium tracking-wide">
+                <button onclick="scrollToForm()" class="btn-dark w-full px-8 py-4 rounded-2xl text-base font-medium tracking-wide">
                     ЗАРЕЄСТРУЙСЯ
                 </button>
             </div>
@@ -208,7 +205,6 @@
                 <label class="flex items-center gap-4 cursor-pointer checkbox-wrapper group py-2">
                     <div class="relative">
                         <input type="checkbox" name="want_review" class="peer sr-only">
-                        <!-- Чекбокс: серый бордер, черный фон при нажатии -->
                         <div class="w-7 h-7 border-2 border-[#D6D3D1] rounded-lg peer-checked:bg-[#1C1917] peer-checked:border-[#1C1917] transition-all duration-200 flex items-center justify-center bg-white">
                             <svg class="w-4 h-4 text-white hidden pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                         </div>
