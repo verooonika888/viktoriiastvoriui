@@ -54,9 +54,9 @@
             text-shadow: 0 4px 12px rgba(0,0,0,0.6);
         }
         
-        /* Спеціальна тінь для темного тексту (легке світіння, щоб відділити від темного фону) */
-        .cherry-text-glow {
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+        /* Спеціальне світле світіння для вишневого тексту, щоб він "світився" */
+        .cherry-glow {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 30px rgba(159, 18, 57, 0.2);
         }
 
         /* Кнопка: БЕЛАЯ */
@@ -176,23 +176,25 @@
         <div class="absolute bottom-6 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:max-w-3xl z-10 text-center">
             
             <!-- Magazine Style Heading -->
-            <div class="mb-5 md:mb-7">
+            <!-- Зменшено нижній відступ (mb-4 замість mb-7) -->
+            <div class="mb-4">
                 <h1 class="serif leading-tight tracking-tight">
                     <!-- Верхній рядок: Білий -->
                     <span class="block text-[28px] md:text-5xl font-medium text-white text-overlay-shadow">
                         Груповий розбір
                     </span>
                     
-                    <!-- Акцент: ТЕМНО-БОРДОВИЙ / ВИШНЕВИЙ -->
-                    <!-- Використано колір Rose-800 (#9F1239) -->
-                    <!-- Додано клас cherry-text-glow, щоб темний колір не зливався з чорним фоном -->
-                    <span class="block text-[28px] md:text-5xl italic font-normal text-[#9F1239] mt-1 cherry-text-glow">
+                    <!-- Акцент: ВИШНЕВИЙ + СВІТІННЯ -->
+                    <!-- Прибрано mt-1 (тепер немає відступу зверху) -->
+                    <!-- Додано клас cherry-glow для "підсвітки" -->
+                    <span class="block text-[28px] md:text-5xl italic font-normal text-[#9F1239] cherry-glow">
                         контенту та візуалу
                     </span>
                 </h1>
 
                 <!-- Опис: Значно менший, тонкий, білий -->
-                <p class="font-sans text-[13px] md:text-lg text-white/90 font-light mt-4 leading-relaxed max-w-sm mx-auto text-overlay-shadow">
+                <!-- Зменшено відступ зверху (mt-2 замість mt-4) -->
+                <p class="font-sans text-[13px] md:text-lg text-white/90 font-light mt-2 leading-relaxed max-w-sm mx-auto text-overlay-shadow">
                     після якого твій профіль нарешті говорить про тебе, виглядає професійно і продає
                 </p>
             </div>
