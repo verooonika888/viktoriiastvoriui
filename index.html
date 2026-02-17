@@ -130,32 +130,30 @@
     <section class="relative h-[100dvh] w-full overflow-hidden">
         
         <!-- ФОТО ЭКСПЕРТА -->
-        <!-- object-cover center = фото по центру, на весь экран -->
         <img src="neew2.jpg" 
              alt="Expert" 
              class="absolute inset-0 w-full h-full object-cover object-center">
         
-        <!-- ГРАДИЕНТ СНИЗУ (Чтобы белый текст читался на любом фото) -->
-        <!-- Идет от черного (0.7) снизу к прозрачному вверх -->
+        <!-- ГРАДИЕНТ СНИЗУ -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
 
         <!-- ТЕКСТ ПОВЕРХ ФОТО (Внизу) -->
-        <div class="absolute bottom-10 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:max-w-md z-10 text-center">
+        <div class="absolute bottom-10 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:max-w-xl z-10 text-center">
             
-            <!-- Заголовок (Жирный, белый, с тенью) -->
-            <h1 class="text-[34px] md:text-5xl serif font-bold mb-4 leading-[1.1] text-white text-overlay-shadow tracking-tight">
+            <!-- Заголовок -->
+            <h1 class="text-[32px] md:text-5xl serif font-bold mb-5 leading-[1.1] text-white text-overlay-shadow tracking-tight">
                 Груповий розбір <br> 
-                <span class="italic font-normal text-white/90">твого запуску</span>
+                <span class="italic font-normal text-white/90">системи контенту та візуалу</span>
             </h1>
 
-            <!-- Описание (Белое, с тенью) -->
-            <p class="text-white/90 mb-8 font-light text-base leading-relaxed text-overlay-shadow max-w-xs mx-auto">
-                Отримай чітку стратегію, знайди свої точки росту та масштабуй дохід.
+            <!-- Описание (ОФЕР) -->
+            <p class="text-white/95 mb-8 font-light text-[15px] md:text-lg leading-relaxed text-overlay-shadow max-w-md mx-auto">
+                Розберемо типові помилки в бізнесі та блозі, які заважають тобі зростати. Зрозумій, як поєднати сенси та картинку, щоб клієнти купували.
             </p>
 
-            <!-- Кнопка (Белая с черным текстом для контраста) -->
-            <button onclick="scrollToForm()" class="btn-white w-full px-8 py-4 rounded-2xl text-lg font-semibold tracking-wide shadow-2xl">
-                ЗАРЕЄСТРУЙСЯ
+            <!-- Кнопка -->
+            <button onclick="scrollToForm()" class="btn-white w-full px-8 py-4 rounded-2xl text-lg font-semibold tracking-wide shadow-2xl uppercase">
+                Зареєструватися
             </button>
         </div>
     </section>
