@@ -56,29 +56,32 @@
         .btn-white {
             background-color: white; color: #1C1917; transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
         }
         .btn-white:active { transform: scale(0.98); }
 
         .btn-dark {
             background-color: #1C1917; color: white; transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
         /* Inputs */
         .input-field {
             width: 100%; background-color: white; border: 1px solid #E5E5E5; 
-            border-radius: 12px; padding: 16px 18px; font-size: 16px; 
+            border-radius: 12px; padding: 18px 20px; font-size: 16px; 
             transition: all 0.3s; appearance: none; color: #1C1917;
         }
         .input-field::placeholder { color: #A8A29E; font-weight: 300; }
-        .input-field:focus { outline: none; border-color: #1C1917; }
-        
+        .input-field:focus { outline: none; border-color: #1C1917; box-shadow: 0 0 0 1px rgba(28, 25, 23, 0.1); }
+        textarea.input-field { border-radius: 16px; }
+
         /* Error State */
         .input-error { border-color: #EF4444 !important; background-color: #FEF2F2; }
-        .error-text { color: #EF4444; font-size: 12px; margin-top: 4px; display: none; }
-        .length-error { color: #EF4444; font-size: 11px; margin-top: 2px; display: none; }
-        
-        /* Radio */
+        .error-text { color: #EF4444; font-size: 13px; margin-top: 5px; display: none; font-weight: 500; }
+        .length-error { color: #EF4444; font-size: 12px; margin-top: 3px; display: none; margin-left: 2px; }
+
+        /* Radio Button Custom Style */
         input[type="radio"] {
             appearance: none; background-color: #fff; margin: 0; color: #1C1917;
             width: 1.25em; height: 1.25em; border: 1px solid #D6D3D1; border-radius: 50%;
@@ -92,30 +95,18 @@
         input[type="radio"]:checked::before { transform: scale(1); }
         input[type="radio"]:checked { border-color: #1C1917; }
 
+        /* Стили лейблов вопросов */
         .form-label {
-            display: block; font-size: 14px; text-transform: uppercase;
+            display: block; font-size: 16px; text-transform: uppercase;
             letter-spacing: 0.05em; color: #44403C; font-weight: 700;
-            margin-left: 4px; margin-bottom: 6px;
+            margin-left: 4px; margin-bottom: 8px;
         }
+        @media (min-width: 768px) { .form-label { font-size: 18px; } }
 
         .iti { width: 100%; }
-        .iti__country-list { z-index: 60; border-radius: 12px; border: none; }
-
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
-            z-index: 50; display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-        }
-        .modal-overlay.open { opacity: 1; pointer-events: auto; }
+        .iti__country-list { z-index: 50; border-radius: 12px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         
-        .modal-content {
-            background: #F5F5F4; width: 95%; max-width: 550px; max-height: 90vh;
-            overflow-y: auto; border-radius: 20px; padding: 30px;
-            transform: translateY(20px); transition: transform 0.3s ease;
-            position: relative;
-        }
-        .modal-overlay.open .modal-content { transform: translateY(0); }
+        html { scroll-behavior: smooth; }
 
         .loader {
             border: 2px solid #333; border-top: 2px solid #fff; border-radius: 50%;
@@ -126,24 +117,25 @@
 </head>
 <body class="overflow-x-hidden bg-[#F5F5F4]">
 
-    <!-- HERO SECTION -->
+    <!-- SCREEN 1: HERO -->
     <section class="relative h-[100dvh] w-full overflow-hidden">
         
-        <!-- DATE BADGE -->
-        <div class="absolute top-8 left-6 z-20">
-            <div class="inline-flex items-center gap-3 border border-white/30 bg-white/5 backdrop-blur-md px-5 py-3">
+        <!-- ДАТА СЛЕВА СВЕРХУ (ОНОВЛЕНО) -->
+        <!-- Змінено left-6 на left-4 для зміщення лівіше -->
+        <div class="absolute top-8 left-4 z-20">
+            <!-- Прибрано ONLINE та розділювач, залишено тільки дату -->
+            <div class="inline-block border border-white/30 bg-white/5 backdrop-blur-md px-5 py-3">
                 <span class="text-white text-sm md:text-lg font-medium tracking-wide uppercase">21 лютого</span>
-                <span class="w-px h-4 bg-white/40"></span>
-                <span class="text-white text-sm md:text-lg font-bold tracking-widest">ONLINE</span>
             </div>
         </div>
 
-        <!-- PHOTO -->
+        <!-- ФОТО -->
         <img src="n2.JPG" alt="Expert" class="absolute inset-0 w-full h-full object-cover object-center">
         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none"></div>
 
-        <!-- CONTENT -->
+        <!-- ТЕКСТ ПОВЕРХ ФОТО -->
         <div class="absolute bottom-6 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:max-w-3xl z-10 text-center">
+            
             <div class="mb-4">
                 <h1 class="serif leading-tight tracking-tight">
                     <span class="block text-[28px] md:text-5xl font-medium text-white text-overlay-shadow">
@@ -162,121 +154,123 @@
                 Щоб прийняти участь, зареєструйся
             </p>
 
-            <!-- TRIGGER BUTTON -->
-            <button onclick="openModal()" class="btn-white w-full max-w-xs px-6 py-4 rounded-xl text-base font-semibold tracking-wide shadow-2xl mb-2 cursor-pointer">
+            <!-- Кнопка скроллит вниз к форме -->
+            <button onclick="scrollToForm()" class="btn-white w-full max-w-xs px-6 py-4 rounded-xl text-base font-semibold tracking-wide shadow-2xl mb-2">
                 ЗАРЕЄСТРУЙСЯ
             </button>
         </div>
     </section>
 
-    <!-- MODAL FORM -->
-    <div id="modal" class="modal-overlay">
-        <div class="modal-content">
-            <!-- Close Button -->
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-[#78716C] hover:text-[#1C1917] p-2">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-
-            <div class="text-center mb-6">
-                <h2 class="text-2xl serif text-[#1C1917]">Анкета учасника</h2>
+    <!-- SCREEN 2: ANKETA -->
+    <section id="anketa-section" class="py-20 md:py-24 bg-[#F5F5F4] px-6 border-t border-[#E7E5E4]">
+        <div class="container mx-auto max-w-xl">
+            
+            <div class="text-center mb-10 md:mb-12">
+                <h2 class="text-3xl md:text-5xl serif mb-4 text-[#1C1917]">Анкета учасника</h2>
+                <p class="text-[#78716C] font-light text-sm md:text-base">Заповніть форму, щоб подати заявку на розбір.</p>
             </div>
 
-            <form id="mainForm" class="space-y-4">
+            <form id="mainForm" class="space-y-6 md:space-y-8">
                 
                 <!-- 1. Ім'я -->
-                <div>
+                <div class="space-y-2">
                     <label class="form-label">Твоє ім'я</label>
                     <input type="text" name="imya" id="imya" required minlength="3" class="input-field" placeholder="Ваше ім'я">
                     <p class="error-text" id="name-error">Ім'я не може містити цифри</p>
                     <p class="length-error">Мінімум 3 символи</p>
                 </div>
 
-                <!-- 2. Телефон -->
-                <div>
-                    <label class="form-label">Телефон</label>
+                <!-- 2. Ніша -->
+                <div class="space-y-2">
+                    <label class="form-label">Чим ти займаєшся?</label>
+                    <input type="text" name="niche" required minlength="3" class="input-field" placeholder="Наприклад: Таргет, Психологія...">
+                    <p class="length-error">Мінімум 3 символи</p>
+                </div>
+
+                <!-- 3. Труднощі -->
+                <div class="space-y-2">
+                    <label class="form-label">Які труднощі ти відчуваєш з контентом та візуалом?</label>
+                    <textarea name="difficulties" required minlength="3" rows="3" class="input-field" placeholder="Опишіть вашу ситуацію..."></textarea>
+                    <p class="length-error">Мінімум 3 символи</p>
+                </div>
+
+                <!-- 4. Мета -->
+                <div class="space-y-2">
+                    <label class="form-label">Яка твоя мета ведення профілю?</label>
+                    <input type="text" name="goal" required minlength="3" class="input-field" placeholder="Наприклад: Продаж послуг, особистий бренд...">
+                    <p class="length-error">Мінімум 3 символи</p>
+                </div>
+
+                <!-- 5. Соцмережі -->
+                <div class="space-y-2">
+                    <label class="form-label">Посилання на соцмережі (Instagram)</label>
+                    <input type="text" name="instagram" required minlength="3" class="input-field" placeholder="@username">
+                    <p class="length-error">Мінімум 3 символи</p>
+                </div>
+
+                <!-- 6. Телефон -->
+                <div class="space-y-2">
+                    <label class="form-label">Номер телефону для зв'язку</label>
                     <input type="tel" id="phone" name="phone" required class="input-field">
                     <p class="error-text" id="phone-error">Некоректний номер</p>
                     <p class="error-text" id="country-error">Реєстрація з цього регіону недоступна</p>
                 </div>
 
-                <!-- 3. Ніша -->
-                <div>
-                    <label class="form-label">Чим ти займаєшся?</label>
-                    <input type="text" name="niche" required minlength="3" class="input-field" placeholder="Таргет, Психологія...">
-                    <p class="length-error">Мінімум 3 символи</p>
-                </div>
-
-                <!-- 4. Мета -->
-                <div>
-                    <label class="form-label">Яка мета ведення профілю?</label>
-                    <input type="text" name="goal" required minlength="3" class="input-field" placeholder="Продажі, блог...">
-                    <p class="length-error">Мінімум 3 символи</p>
-                </div>
-
-                <!-- 5. Труднощі -->
-                <div>
-                    <label class="form-label">Які є труднощі?</label>
-                    <textarea name="difficulties" required minlength="3" rows="2" class="input-field" placeholder="Опишіть коротко..."></textarea>
-                    <p class="length-error">Мінімум 3 символи</p>
-                </div>
-
-                <!-- 6. Соцмережі -->
-                <div>
-                    <label class="form-label">Instagram (@username)</label>
-                    <input type="text" name="instagram" required minlength="3" class="input-field" placeholder="@username">
-                    <p class="length-error">Мінімум 3 символи</p>
-                </div>
-
                 <!-- 7. ТГ Нік -->
-                <div>
-                    <label class="form-label">Telegram (@username)</label>
+                <div class="space-y-2">
+                    <label class="form-label">Нік у Telegram</label>
                     <input type="text" name="tg_nick" required minlength="3" class="input-field" placeholder="@username">
                     <p class="length-error">Мінімум 3 символи</p>
                 </div>
 
                 <!-- 8. Тип участі -->
-                <div class="pt-2 space-y-2">
-                    <label class="flex items-center gap-3 p-3 border border-[#E5E5E5] rounded-xl bg-white cursor-pointer hover:border-[#1C1917]">
+                <div class="space-y-3 pt-2">
+                    <label class="flex items-center gap-3 p-4 border border-[#E5E5E5] rounded-xl bg-white cursor-pointer hover:border-[#1C1917] transition-colors">
                         <input type="radio" name="participation_type" value="audit" required>
-                        <span class="text-[#1C1917] font-medium">Хочу щоб мене розібрали</span>
+                        <span class="text-[#1C1917] text-lg font-medium">Хочу щоб мене розібрали</span>
                     </label>
-                    <label class="flex items-center gap-3 p-3 border border-[#E5E5E5] rounded-xl bg-white cursor-pointer hover:border-[#1C1917]">
+                    <label class="flex items-center gap-3 p-4 border border-[#E5E5E5] rounded-xl bg-white cursor-pointer hover:border-[#1C1917] transition-colors">
                         <input type="radio" name="participation_type" value="viewer" required>
-                        <span class="text-[#1C1917] font-medium">Хочу бути глядачем</span>
+                        <span class="text-[#1C1917] text-lg font-medium">Хочу бути глядачем</span>
                     </label>
                 </div>
 
-                <!-- Submit -->
-                <div class="pt-2">
-                    <button type="submit" class="w-full btn-dark py-4 rounded-xl font-medium text-lg flex justify-center items-center shadow-lg">
-                        <span class="btn-text">ВІДПРАВИТИ</span>
+                <!-- Submit Button -->
+                <div class="pt-4">
+                    <button type="submit" class="w-full btn-dark py-5 rounded-2xl font-medium text-lg flex justify-center items-center shadow-lg">
+                        <span class="btn-text">ЗАПОВНИТИ АНКЕТУ</span>
                     </button>
                 </div>
+
+                <!-- Disclaimer -->
+                <div class="flex gap-3 items-start p-4 rounded-2xl border border-[#E7E5E4] bg-white">
+                    <span class="text-[#1C1917] text-xl leading-none mt-1">*</span>
+                    <p class="text-[11px] md:text-xs text-[#78716C] leading-relaxed">
+                        Обов'язково перевірте правильність вказаних вами даних, оскільки на них буде відправлене запрошення на розбори.
+                    </p>
+                </div>
+
             </form>
         </div>
-    </div>
+    </section>
+
+    <footer class="py-8 text-center text-[#A8A29E] text-xs bg-[#F5F5F4]">
+        <p>&copy; 2025 Всі права захищено.</p>
+    </footer>
 
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
-    <script defer>
+    <script>
         // --- CONFIGURATION ---
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz1Uoy5xzTYHglvws2R0Ri9NxwPGvyaOXIBGHK41VLd0GnEtLbulEeL9bQlCYprE1ic/exec'; 
         const TG_BOT_URL = 'https://t.me/YOUR_BOT'; 
         const EXCLUDED_COUNTRIES = ['ru', 'by'];
         // ---------------------
 
-        // Modal Logic
-        const modal = document.getElementById('modal');
-        function openModal() {
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeModal() {
-            modal.classList.remove('open');
-            document.body.style.overflow = '';
+        function scrollToForm() {
+            document.getElementById('anketa-section').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Phone Input Init
         const input = document.querySelector("#phone");
         const iti = window.intlTelInput(input, {
             initialCountry: "auto",
@@ -291,7 +285,6 @@
             autoPlaceholder: "aggressive"
         });
 
-        // Validation & Submit
         const form = document.getElementById('mainForm');
         
         form.addEventListener('submit', (e) => {
@@ -305,7 +298,7 @@
             const btn = form.querySelector('button');
             const btnText = form.querySelector('.btn-text');
 
-            // Reset All Errors
+            // Reset Errors
             const allInputs = form.querySelectorAll('input, textarea');
             allInputs.forEach(el => el.classList.remove('input-error'));
             document.querySelectorAll('.error-text, .length-error').forEach(el => el.style.display = 'none');
@@ -389,11 +382,6 @@
                 btnText.innerText = originalText;
                 btn.disabled = false;
             });
-        });
-
-        // Close modal on outside click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
         });
     </script>
 </body>
