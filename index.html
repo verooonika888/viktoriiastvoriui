@@ -49,8 +49,15 @@
 
         .serif { font-family: 'Playfair Display', serif; }
 
-        .text-overlay-shadow { text-shadow: 0 4px 12px rgba(0,0,0,0.6); }
-        .cherry-glow { text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 30px rgba(159, 18, 57, 0.2); }
+        .text-overlay-shadow { text-shadow: 0 4px 12px rgba(0,0,0,0.8); }
+        
+        /* ОНОВЛЕНИЙ ЕФЕКТ СВІТІННЯ (Більш яскравий та світлий) */
+        .cherry-glow {
+            text-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.9),  /* Яскравий білий центр */
+                0 0 40px rgba(251, 113, 133, 0.8),  /* Світло-рожевий ореол */
+                0 0 70px rgba(225, 29, 72, 0.6);    /* Глибокий червоний фон */
+        }
 
         /* Buttons */
         .btn-white {
@@ -120,10 +127,8 @@
     <!-- SCREEN 1: HERO -->
     <section class="relative h-[100dvh] w-full overflow-hidden">
         
-        <!-- ДАТА СЛЕВА СВЕРХУ (ОНОВЛЕНО) -->
-        <!-- Змінено left-6 на left-4 для зміщення лівіше -->
+        <!-- ДАТА СЛЕВА СВЕРХУ -->
         <div class="absolute top-8 left-4 z-20">
-            <!-- Прибрано ONLINE та розділювач, залишено тільки дату -->
             <div class="inline-block border border-white/30 bg-white/5 backdrop-blur-md px-5 py-3">
                 <span class="text-white text-sm md:text-lg font-medium tracking-wide uppercase">21 лютого</span>
             </div>
@@ -141,7 +146,9 @@
                     <span class="block text-[28px] md:text-5xl font-medium text-white text-overlay-shadow">
                         <span class="text-[#E7E5E4] font-bold mr-2">БЕЗКОШТОВНИЙ</span> Груповий розбір
                     </span>
-                    <span class="block text-[28px] md:text-5xl italic font-normal text-[#9F1239] cherry-glow">
+                    
+                    <!-- ОНОВЛЕНИЙ ТЕКСТ: Світлий колір + Яскраве світіння -->
+                    <span class="block text-[28px] md:text-5xl italic font-normal text-[#FB7185] cherry-glow">
                         контенту та візуалу
                     </span>
                 </h1>
@@ -263,7 +270,10 @@
     <script>
         // --- CONFIGURATION ---
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz1Uoy5xzTYHglvws2R0Ri9NxwPGvyaOXIBGHK41VLd0GnEtLbulEeL9bQlCYprE1ic/exec'; 
-        const TG_BOT_URL = 'https://t.me/YOUR_BOT'; 
+        
+        // ВСТАВТЕ СЮДИ ПОСИЛАННЯ НА ТЕЛЕГРАМ-КАНАЛ
+        const TG_CHANNEL_URL = 'https://t.me/YOUR_CHANNEL_LINK'; 
+        
         const EXCLUDED_COUNTRIES = ['ru', 'by'];
         // ---------------------
 
@@ -374,7 +384,9 @@
             })
             .then(() => {
                 if(typeof fbq !== 'undefined') fbq('track', 'Lead');
-                window.location.href = TG_BOT_URL;
+                
+                // ПЕРЕАДРЕСАЦІЯ НА КАНАЛ
+                window.location.href = TG_CHANNEL_URL;
             })
             .catch(err => {
                 console.error(err);
