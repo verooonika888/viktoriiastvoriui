@@ -49,12 +49,12 @@
 
         .serif { font-family: 'Playfair Display', serif; }
 
-        /* Тень для текста на фото (чтобы читалось без фона) */
+        /* Тень для текста на фото */
         .text-overlay-shadow {
             text-shadow: 0 4px 12px rgba(0,0,0,0.6);
         }
         
-        /* Спеціальне світле світіння для вишневого тексту, щоб він "світився" */
+        /* Спеціальне світле світіння для вишневого тексту */
         .cherry-glow {
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 30px rgba(159, 18, 57, 0.2);
         }
@@ -103,15 +103,6 @@
             border-radius: 16px;
         }
 
-        /* Checkbox Custom Style */
-        .checkbox-wrapper input:checked + div {
-            background-color: #1C1917;
-            border-color: #1C1917;
-        }
-        .checkbox-wrapper input:checked + div svg {
-            display: block;
-        }
-
         /* Radio Button Custom Style */
         input[type="radio"] {
             appearance: none;
@@ -125,6 +116,7 @@
             display: grid;
             place-content: center;
             transition: 0.2s all;
+            flex-shrink: 0;
         }
         input[type="radio"]::before {
             content: "";
@@ -140,6 +132,23 @@
         }
         input[type="radio"]:checked {
             border-color: #1C1917;
+        }
+
+        /* Стили лейблов вопросов */
+        .form-label {
+            display: block;
+            font-size: 16px; /* text-base */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #44403C; /* Stone-700 - темнее для читаемости */
+            font-weight: 700;
+            margin-left: 4px;
+            margin-bottom: 8px;
+        }
+        @media (min-width: 768px) {
+            .form-label {
+                font-size: 18px; /* text-lg */
+            }
         }
 
         .iti { width: 100%; }
@@ -164,6 +173,13 @@
     <!-- SCREEN 1: HERO -->
     <section class="relative h-[100dvh] w-full overflow-hidden">
         
+        <!-- ДАТА СЛЕВА СВЕРХУ -->
+        <div class="absolute top-6 left-6 z-20">
+            <span class="text-white text-xl md:text-2xl font-bold tracking-widest border border-white/40 px-5 py-2 rounded-full backdrop-blur-md bg-white/10">
+                21.02
+            </span>
+        </div>
+
         <!-- ФОТО -->
         <img src="n2.JPG" 
              alt="Expert" 
@@ -176,24 +192,20 @@
         <div class="absolute bottom-6 left-6 right-6 md:left-1/2 md:-translate-x-1/2 md:max-w-3xl z-10 text-center">
             
             <!-- Magazine Style Heading -->
-            <!-- Зменшено нижній відступ (mb-4 замість mb-7) -->
             <div class="mb-4">
                 <h1 class="serif leading-tight tracking-tight">
                     <!-- Верхній рядок: Білий -->
                     <span class="block text-[28px] md:text-5xl font-medium text-white text-overlay-shadow">
-                        Груповий розбір
+                        <span class="text-[#E7E5E4] font-bold mr-2">БЕЗКОШТОВНИЙ</span> Груповий розбір
                     </span>
                     
                     <!-- Акцент: ВИШНЕВИЙ + СВІТІННЯ -->
-                    <!-- Прибрано mt-1 (тепер немає відступу зверху) -->
-                    <!-- Додано клас cherry-glow для "підсвітки" -->
                     <span class="block text-[28px] md:text-5xl italic font-normal text-[#9F1239] cherry-glow">
                         контенту та візуалу
                     </span>
                 </h1>
 
-                <!-- Опис: Значно менший, тонкий, білий -->
-                <!-- Зменшено відступ зверху (mt-2 замість mt-4) -->
+                <!-- Опис -->
                 <p class="font-sans text-[13px] md:text-lg text-white/90 font-light mt-2 leading-relaxed max-w-sm mx-auto text-overlay-shadow">
                     після якого твій профіль нарешті говорить про тебе, виглядає професійно і продає
                 </p>
@@ -224,68 +236,55 @@
                 
                 <!-- 1. Ніша -->
                 <div class="space-y-2">
-                    <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1">Чим ти займаєшся?</label>
+                    <label class="form-label">Чим ти займаєшся?</label>
                     <input type="text" name="niche" required class="input-field" placeholder="Наприклад: Таргет, Психологія...">
                 </div>
 
                 <!-- 2. Труднощі -->
                 <div class="space-y-2">
-                    <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1">Які труднощі ти відчуваєш з контентом та візуалом?</label>
+                    <label class="form-label">Які труднощі ти відчуваєш з контентом та візуалом?</label>
                     <textarea name="difficulties" required rows="3" class="input-field" placeholder="Опишіть вашу ситуацію..."></textarea>
                 </div>
 
-                <!-- 3. Готовність -->
-                <div class="space-y-3">
-                    <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1 leading-relaxed">
-                        Наскільки ти готова працювати над покращенням свого візуалу та контенту, щоб отримувати нових підписників, класні охоплення та збільшувати свої продажі?
-                    </label>
-                    
-                    <div class="space-y-3 mt-2">
-                        <!-- Варіант 1 -->
-                        <label class="flex items-center gap-3 p-4 border border-[#E5E5E5] rounded-xl bg-white cursor-pointer hover:border-[#1C1917] transition-colors">
-                            <input type="radio" name="readiness" value="go_but_no_time" required>
-                            <span class="text-[#1C1917] text-sm md:text-base">Готова, але все ніяк не можу виділити на це час</span>
-                        </label>
-
-                        <!-- Варіант 2 -->
-                        <label class="flex items-center gap-3 p-4 border border-[#E5E5E5] rounded-xl bg-white cursor-pointer hover:border-[#1C1917] transition-colors">
-                            <input type="radio" name="readiness" value="ready_100" required>
-                            <span class="text-[#1C1917] text-sm md:text-base">Готова на всі сто</span>
-                        </label>
-                    </div>
+                <!-- 3. Мета (ЗАМІНЕНО) -->
+                <div class="space-y-2">
+                    <label class="form-label">Яка твоя мета ведення профілю?</label>
+                    <input type="text" name="goal" required class="input-field" placeholder="Наприклад: Продаж послуг, особистий бренд...">
                 </div>
 
                 <!-- 4. Соцмережі -->
                 <div class="space-y-2">
-                    <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1">Посилання на соцмережі (Instagram)</label>
+                    <label class="form-label">Посилання на соцмережі (Instagram)</label>
                     <input type="text" name="instagram" required class="input-field" placeholder="@username">
                 </div>
 
                 <!-- 5. Телефон -->
                 <div class="space-y-2">
-                    <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1">Номер телефону для зв'язку</label>
+                    <label class="form-label">Номер телефону для зв'язку</label>
                     <input type="tel" id="phone" name="phone" required class="input-field">
                     <p class="text-red-500 text-xs mt-2 hidden" id="error-msg">Некоректний номер</p>
                 </div>
 
                 <!-- 6. ТГ Нік -->
                 <div class="space-y-2">
-                    <label class="block text-xs uppercase tracking-wider text-[#78716C] font-semibold ml-1">Нік у Telegram</label>
+                    <label class="form-label">Нік у Telegram</label>
                     <input type="text" name="tg_nick" required class="input-field" placeholder="@username">
                 </div>
 
-                <!-- 7. Checkbox Case Review -->
-                <label class="flex items-center gap-4 cursor-pointer checkbox-wrapper group py-2">
-                    <div class="relative">
-                        <input type="checkbox" name="want_review" class="peer sr-only">
-                        <div class="w-7 h-7 border-2 border-[#D6D3D1] rounded-lg peer-checked:bg-[#1C1917] peer-checked:border-[#1C1917] transition-all duration-200 flex items-center justify-center bg-white">
-                            <svg class="w-4 h-4 text-white hidden pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                    </div>
-                    <span class="text-[#1C1917] font-medium text-base select-none">
-                        Хочу, щоб мій кейс розібрали<span class="text-red-500 ml-1">*</span>
-                    </span>
-                </label>
+                <!-- 7. Тип участі (ЗАМІНЕНО на 2 варіанти) -->
+                <div class="space-y-3 pt-2">
+                    <!-- Варіант 1 -->
+                    <label class="flex items-center gap-3 p-4 border border-[#E5E5E5] rounded-xl bg-white cursor-pointer hover:border-[#1C1917] transition-colors">
+                        <input type="radio" name="participation_type" value="audit" required>
+                        <span class="text-[#1C1917] text-lg font-medium">Хочу щоб мене розібрали</span>
+                    </label>
+
+                    <!-- Варіант 2 -->
+                    <label class="flex items-center gap-3 p-4 border border-[#E5E5E5] rounded-xl bg-white cursor-pointer hover:border-[#1C1917] transition-colors">
+                        <input type="radio" name="participation_type" value="viewer" required>
+                        <span class="text-[#1C1917] text-lg font-medium">Хочу бути глядачем</span>
+                    </label>
+                </div>
 
                 <!-- Submit Button -->
                 <div class="pt-4">
@@ -368,11 +367,11 @@
             const data = {
                 niche: formData.get('niche'),
                 difficulties: formData.get('difficulties'),
-                readiness: formData.get('readiness'), 
+                goal: formData.get('goal'), // Нове поле
                 instagram: formData.get('instagram'),
                 phone: iti.getNumber(),
                 tg_nick: formData.get('tg_nick'),
-                want_review: formData.get('want_review') === 'on',
+                participation_type: formData.get('participation_type'), // Нове поле (audit або viewer)
                 ...getUTMParams()
             };
 
